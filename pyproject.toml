@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "supportkit"
+version = "0.1.0"
+description = "The proven core of two support-log analysis projects: primitives that enforce their own discipline."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "Albert Nikanorov" }]
+
+[tool.setuptools]
+packages = ["supportkit"]
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+testpaths = ["tests"]
+pythonpath = ["."]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+src = ["supportkit"]
+
+[tool.ruff.lint]
+# Real-bug rules plus import hygiene; style-only rules stay off so a real
+# change is never buried in reformatting.
+select = ["E4", "E7", "E9", "F", "I", "B", "UP"]
+ignore = ["E501", "B008", "B905"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["F811", "E402"]

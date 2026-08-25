@@ -1,0 +1,13 @@
+# Dev/CI dependencies. The rule, learned the hard way: a test that
+# importorskips a missing dependency is a test that never runs. Anything a
+# guard genuinely needs belongs here, not in a comment.
+pytest>=8.0.0
+ruff>=0.6.0
+
+# tests/test_statlib_reference.py pins the hand-rolled statistics against
+# scipy (via statsmodels) and is worthless if it skips. A Wilson-interval
+# boundary bug was only ever found by this cross-check.
+statsmodels>=0.14.2
+
+# tests/test_xlsx_safe.py builds real workbooks to break.
+openpyxl>=3.1.5
