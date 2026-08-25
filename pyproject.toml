@@ -4,12 +4,16 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "supportkit"
-version = "0.1.0"
+version = "0.2.0"
 description = "The proven core of two support-log analysis projects: primitives that enforce their own discipline."
 readme = "README.md"
 requires-python = ">=3.11"
 license = { text = "MIT" }
 authors = [{ name = "Albert Nikanorov" }]
+dependencies = ["openpyxl>=3.1.5"]
+
+[project.scripts]
+supportkit = "supportkit.cli:main"
 
 [tool.setuptools]
 packages = ["supportkit"]

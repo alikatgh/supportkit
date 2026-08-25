@@ -74,10 +74,31 @@ appliance for this class of data:
 Not a Streamlit competitor. Streamlit is a canvas; this is an appliance that
 knows the data.
 
+## The CLI (0.2)
+
+```
+supportkit profile your_export.xlsx
+```
+
+Drop an unknown xlsx/csv on it and get: a profile of every column, a proposed
+role mapping with the **measured** evidence for each choice (a header called
+"date" full of junk loses to a column whose values demonstrably parse), the
+defects a human must rule on (partial months, self-conflicting dates,
+instruction rows), and the plan — what would run, and **what your data cannot
+answer, with the reason**. It changes nothing and spends nothing.
+
+New in 0.2: `dateparse` (parser tournament; ambiguity surfaces as measured
+self-conflicts, never a silent default), `profiling` (generic column
+classifier; sample values pseudonymised through the chokepoint), `contract`
+(roles + serialisable `Mapping` + the evidence-first proposer), `registry`
+(analyses declare requires/refuses; the refusals page is generated, not
+hand-written), `runs` (provenance manifests: which bytes produced this
+number).
+
 ## Install
 
 ```
-pip install "supportkit @ git+https://github.com/alikatgh/supportkit.git@v0.1.0"
+pip install "supportkit @ git+https://github.com/alikatgh/supportkit.git@v0.2.0"
 ```
 
 ## Development

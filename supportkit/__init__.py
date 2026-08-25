@@ -7,4 +7,4 @@ see. Extracted at the second occurrence, per the rule; loaders and conclusions
 deliberately stay out — see the README.
 """
 
-__version__ = "0.1.0"
+__version__ = "0.2.0"

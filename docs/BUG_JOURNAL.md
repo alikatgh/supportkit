@@ -33,6 +33,22 @@ specific fix lives in a module here.
 
 Newest first. Five lines max each.
 
+### 2026-08-26 — a same-size, same-second edit defeated the bytecode cache
+Sabotage-testing dateparse: the sabotage write and the restoring `cp` produced
+identical byte counts within one mtime-second, so pyc invalidation (mtime+size)
+kept executing the SABOTAGED bytecode while `inspect.getsource` showed the
+clean file. Fix: clear `__pycache__` around sabotage cycles. Lesson: when
+runtime behaviour contradicts the source you are reading, suspect the cache
+before the code — verify which artefact actually executes.
+
+### 2026-08-26 — a sabotage that could not bite
+`tests/test_contract.py`: the measured-beats-named test used a junk "date"
+column, which the rate floor filtered before name-preference was consulted —
+inverting the priority left the test green. Fixed with two columns that BOTH
+parse at different rates, then asserted red under sabotage. Lesson: a guard
+must be exercised on an input where the guarded rule is the deciding factor,
+not merely present.
+
 ### 2026-08-25 — repository bootstrapped
 Extracted from two parent projects at the second occurrence of byte-identical
 duplication. Tests ported with the modules — the four PII chokepoint tests
